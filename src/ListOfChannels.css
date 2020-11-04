@@ -1,0 +1,59 @@
+.listOfChannels {
+    background-color: #2f3136;
+    border: none;
+    color: #72767d;
+}
+
+.listOfChannels_searchBar {
+    display: flex;
+    padding: 10px;
+    width: 220px;
+    border-bottom: 1px solid #202225;
+}
+
+.listOfChannels_searchBar > button {
+    background-color: #202225;
+    color: #72767d;
+    border: none;
+    flex: 1;
+    outline: none;
+    padding: 6px;
+    border-radius: 5px;
+}
+
+.listOfChannels_directMessages {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+}
+
+.listOfChannels_directMessages > button {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    color: #8e9297;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: none;
+    height: 42px;
+    background-color: #2f3136;
+}
+
+.listOfChannels_directMessages > button:hover {
+    background-color: #35383d;
+    cursor: pointer;
+    color: white;
+}
+
+.listOfChannels_directMessages_icon {
+    padding-right: 10px;
+    font-size: 22px;
+}
+
+.listOfChannels_directMessages > p {
+    font-size: 12px;
+    font-weight: 600;
+    margin: 16px 0 0 10px;
+}
