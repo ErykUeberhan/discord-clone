@@ -30,7 +30,6 @@
 }
 
 .friendButton_xIconDiv {
-    display: flex;
     flex-direction: row-reverse;
     align-items: center;
     flex: 1;
