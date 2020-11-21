@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './ListOfChannels.css'
+import './Friends.css'
 import { FaUserFriends } from 'react-icons/fa';
 import { GiSpikedSnail } from 'react-icons/gi';
 import FriendButton from './FriendButton';

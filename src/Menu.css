@@ -4,14 +4,18 @@
     justify-content: flex-start;
     align-items: center;
     height: 100vh;
-    width: 72px;
+    min-width: 72px;
     background-color: #202225;
     padding-top: 12px;
     box-sizing: border-box;
 }
 
 .menu > div {
-    margin: 0 0 8px;
+    margin-bottom: 8px;
+}
+
+.link > div {
+    margin-bottom: 8px;
 }
 
 .separator {

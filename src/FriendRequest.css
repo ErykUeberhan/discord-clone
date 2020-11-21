@@ -1,0 +1,57 @@
+.friendRequest {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 8px 30px;
+}
+
+.friendRequest_title {
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 9px 0;
+}
+
+.friendRequest_description {
+    color: white;
+    font-size: 12px;
+    margin: 5px 0;
+}
+
+.friendRequest_input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    /* border: 1px solid white; */
+}
+
+.friendRequest_enterUser {
+    background-color: #303339;
+    border: 1px solid #222428;
+    flex: 1;
+    border-radius: 10px;
+    height: 52px;
+    outline: none;
+    padding: 0 186px 0 16px;
+    color: white;
+    font-weight: 600;
+    margin: 13px 0;
+}
+
+.friendRequest_sendRequest {
+    position: absolute;
+    margin-right: 16px;
+    height: 28px;
+    width: 120px;
+    padding: 2px 16px;
+    border: none;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    box-sizing: content-box;
+    outline: none;
+    background-color: #7289da;
+    color: white;
+    opacity: .5;
+}

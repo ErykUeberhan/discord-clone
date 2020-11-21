@@ -1,0 +1,36 @@
+.desktopMenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* flex: 1; */
+    padding: 0 8px;
+    height: 48px;
+}
+
+.desktopMenu > button {
+    display: inline-block;
+    white-space: nowrap;
+    height: 20px;
+    padding: 2px 8px;
+    margin: 0 8px;
+    background-color: #36393f;
+    border-radius: 3px;
+    color: rgb(206, 206, 206);
+    border: none;
+    outline: none;
+}
+
+.desktopMenu > button:hover {
+    color: white;
+    background-color: #3b3e44;
+}
+
+.desktopMenu > .desktopMenu_addFriend {
+    background-color: rgb(67, 181, 129);
+    color: white;
+}
+
+.desktopMenu > .desktopMenu_addFriend:hover {
+    color: rgb(67, 181, 129);
+    background-color: rgba(67, 181, 129, 0.2);
+}
