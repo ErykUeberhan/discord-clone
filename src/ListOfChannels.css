@@ -48,12 +48,6 @@
     color: white;
 }
 
-.listOfChannels_directMessages_friends > p {
-    font-size: 12px;
-    font-weight: 600;
-    margin: 16px 0 0 10px;
-}
-
 .listOfChannels_directMessages_friends_icon {
     padding-right: 10px;
     font-size: 22px;
@@ -63,7 +57,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 5px;
+    margin: 10px;
 }
 
 .listOfChannels_directMessages_friends_title_add {
@@ -81,13 +75,10 @@
     position: absolute;
     display: none;
     padding: 10px;
-    /* height: 50px;
-    width: 100px; */
     background-color: black;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    /* margin-left: 110px; */
     margin-top: -55px;
 }
 
@@ -115,11 +106,71 @@
     margin-right: 10px;
 }
 
+.listOfChannels_directMessages_userContainer_right {
+    display: flex;
+    flex-direction: row;
+}
+
 .listOfChannels_directMessages_userContainer_right > button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     padding: 5px;
     font-size: 20px;
     color: #8e9297;
-    background-color: #202225;
+    background-color: #292b2f;
     border: none;
     margin-left: 5px;
+    height: 32px;
+    width: 32px;
+    outline: none;
+}
+
+.listOfChannels_directMessages_userContainer_right > button:hover {
+    background-color: #35383d;
+}
+
+.listOfChannels_directMessages_userContainer_right > div {
+    position: absolute;
+    display: none;
+    padding: 10px;
+    background-color: black;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: white;
+    margin-top: -45px;
+}
+
+.listOfChannels_directMessages_userContainer_right_deafenAlert, .listOfChannels_directMessages_userContainer_right_undeafenAlert {
+    margin-left: 35px;
+}
+
+.listOfChannels_directMessages_userContainer_right_settingsAlert {
+    margin-left: 70px;
+}
+
+.listOfChannels_directMessages_userContainer_right_mute:hover ~ .listOfChannels_directMessages_userContainer_right_muteAlert {
+    display: flex;
+}
+
+.listOfChannels_directMessages_userContainer_right_unmute:hover ~ .listOfChannels_directMessages_userContainer_right_unmuteAlert {
+    display: flex;
+}
+
+.listOfChannels_directMessages_userContainer_right_deafen:hover ~ .listOfChannels_directMessages_userContainer_right_deafenAlert {
+    display: flex;
+}
+
+.listOfChannels_directMessages_userContainer_right_undeafen:hover ~ .listOfChannels_directMessages_userContainer_right_undeafenAlert {
+    display: flex;
+}
+
+.listOfChannels_directMessages_userContainer_right_settings:hover ~ .listOfChannels_directMessages_userContainer_right_settingsAlert {
+    display: flex;
+}
+
+.listOfChannels_directMessages_userContainer_right > div > p {
+    font-size: 12px;
 }

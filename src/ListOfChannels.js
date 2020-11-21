@@ -67,28 +67,43 @@ export default class StateProvider extends Component {
                         {
                             this.state.toggleMic === true
                                 ?
-                                <button onClick={this.mute}>
+                                <button className='listOfChannels_directMessages_userContainer_right_mute' onClick={this.mute}>
                                     <IoMdMic />
                                 </button>
                                 :
-                                <button onClick={this.mute}>
+                                <button className='listOfChannels_directMessages_userContainer_right_unmute' onClick={this.mute}>
                                     <IoMdMicOff />
                                 </button>
                         }
+                        <div className='listOfChannels_directMessages_userContainer_right_muteAlert'>
+                            <p>Mute</p>
+                        </div>
+                        <div className='listOfChannels_directMessages_userContainer_right_unmuteAlert'>
+                            <p>Unmute</p>
+                        </div>
                         {
                             this.state.toggleHp === true
                                 ?
-                                <button onClick={this.deafen}>
+                                <button className='listOfChannels_directMessages_userContainer_right_deafen' onClick={this.deafen}>
                                     <GoUnmute />
                                 </button>
                                 :
-                                <button onClick={this.deafen}>
+                                <button className='listOfChannels_directMessages_userContainer_right_undeafen' onClick={this.deafen}>
                                     <GoMute />
                                 </button>
                         }
-                        <button>
+                        <div className='listOfChannels_directMessages_userContainer_right_deafenAlert'>
+                            <p>Deafen</p>
+                        </div>
+                        <div className='listOfChannels_directMessages_userContainer_right_undeafenAlert'>
+                            <p>Undeafen</p>
+                        </div>
+                        <button className='listOfChannels_directMessages_userContainer_right_settings'>
                             <RiSettings5Fill />
                         </button>
+                        <div className='listOfChannels_directMessages_userContainer_right_settingsAlert'>
+                            <p>Settings</p>
+                        </div>
                     </div>
                 </div>
             </div>
