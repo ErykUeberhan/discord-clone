@@ -1,0 +1,7 @@
+.membersList {
+    display: flex;
+    flex-direction: column;
+    background-color: #2f3136;
+    max-width: 240px;
+    flex: 1;
+}

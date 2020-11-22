@@ -1,0 +1,88 @@
+.userContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #292b2f;
+    padding: 10px;
+}
+
+.userContainer_left {
+    display: flex;
+    flex-direction: row;
+}
+
+.userContainer_left > img {
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    margin-right: 10px;
+}
+
+.userContainer_right {
+    display: flex;
+    flex-direction: row;
+}
+
+.userContainer_right > button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    font-size: 20px;
+    color: #8e9297;
+    background-color: #292b2f;
+    border: none;
+    margin-left: 5px;
+    height: 32px;
+    width: 32px;
+    outline: none;
+}
+
+.userContainer_right > button:hover {
+    background-color: #35383d;
+}
+
+.userContainer_right > div {
+    position: absolute;
+    display: none;
+    padding: 10px;
+    background-color: black;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: white;
+    margin-top: -45px;
+}
+
+.userContainer_right_deafenAlert, .userContainer_right_undeafenAlert {
+    margin-left: 35px;
+}
+
+.userContainer_right_settingsAlert {
+    margin-left: 70px;
+}
+
+.userContainer_right_mute:hover ~ .userContainer_right_muteAlert {
+    display: flex;
+}
+
+.userContainer_right_unmute:hover ~ .userContainer_right_unmuteAlert {
+    display: flex;
+}
+
+.userContainer_right_deafen:hover ~ .userContainer_right_deafenAlert {
+    display: flex;
+}
+
+.userContainer_right_undeafen:hover ~ .userContainer_right_undeafenAlert {
+    display: flex;
+}
+
+.userContainer_right_settings:hover ~ .userContainer_right_settingsAlert {
+    display: flex;
+}
+
+.userContainer_right > div > p {
+    font-size: 12px;
+}

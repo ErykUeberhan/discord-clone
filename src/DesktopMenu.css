@@ -1,9 +1,10 @@
 .desktopMenu {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-evenly; */
     align-items: center;
     /* flex: 1; */
     padding: 0 8px;
+    margin: 0 8px;
     height: 48px;
 }
 

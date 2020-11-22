@@ -1,14 +1,19 @@
 import React from 'react'
 import './ChannelsList.css'
-import { FiChevronDown } from 'react-icons/fi'
+import UserContainer from './UserContainer'
+import Category from './Category'
+import ChannelsListHeader from './ChannelsListHeader'
 
 function Channels() {
     return (
         <div className='channelsList'>
-            <div className='channelsList_header'>
-                <p className='channelsList_header_title'>{'title'}</p>
-                <FiChevronDown />
+            <div className='channelsList_top'>
+                <ChannelsListHeader title='Channel' />
+                <div className='channelsList_body'>
+                    <Category title='TEXT CHANNELS' />
+                </div>
             </div>
+            <UserContainer />
         </div>
     )
 }
