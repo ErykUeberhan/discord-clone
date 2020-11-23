@@ -1,5 +1,6 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import ChannelsList from './ChannelsList';
 import Chat from './Chat';
@@ -8,8 +9,28 @@ import Desktop from './Desktop';
 import Friends from './Friends';
 import MembersList from './MembersList';
 import Menu from './Menu';
+import { selectUser, login, logout } from './features/counter/userSlice';
+import { auth } from './firebase'
+import Login from './Login';
 
 function App() {
+  const dispatch = useDispatch();
+
+  const user = useSelector(selectUser);
+
+  useEffect(() => {
+    auth.onAuthStateChanged((authUser) => {
+      console.log('user is:', authUser);
+      if (authUser) {
+        dispatch(login({
+          email: authUser.email,
+        })
+        );
+      } else {
+        dispatch(logout());
+      }
+    });
+  }, [dispatch])
   return (
     <Router>
       <div className="app">
@@ -28,9 +49,18 @@ function App() {
             </div>
           </Route>
           <Route path='/'>
-            <Menu />
-            <Friends />
-            <Desktop />
+            {
+              user ? (
+                <>
+                  <Menu />
+                  <Friends />
+                  <Desktop />
+                </>
+              ) : (
+                  <Login />
+                )
+            }
+
           </Route>
         </Switch>
       </div>

@@ -3,8 +3,11 @@ import './UserContainer.css'
 import { IoMdMic, IoMdMicOff } from "react-icons/io";
 import { GoUnmute, GoMute } from "react-icons/go";
 import { RiSettings5Fill } from "react-icons/ri";
+import { useSelector } from 'react-redux';
+import { selectUser } from './features/counter/userSlice';
 
 function UserContainer() {
+    const user = useSelector(selectUser);
     const [mute, muteChange] = useState(true)
     const [deafen, deafenChange] = useState(true)
     return (
@@ -15,7 +18,7 @@ function UserContainer() {
                     alt='avatar'
                 />
                 <div>
-                    <p style={{ color: 'white', fontWeight: '600' }}>Bagi</p>
+                    <p style={{ color: 'white', fontWeight: '600' }}>{user.email}</p>
                     <p>#5990</p>
                 </div>
             </div>

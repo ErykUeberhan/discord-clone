@@ -23,8 +23,6 @@ function FriendRequest() {
                     :
                     <button className='friendRequest_sendRequest'>Send Friend Request</button>
                 }
-
-                <div className='space'></div>
             </div>
         </div>
     )
