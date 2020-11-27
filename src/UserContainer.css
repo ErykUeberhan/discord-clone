@@ -11,10 +11,7 @@
     flex-direction: row;
 }
 
-.userContainer_left > img {
-    width: 32px;
-    height: 32px;
-    border-radius: 100%;
+.userContainer_left > div {
     margin-right: 10px;
 }
 

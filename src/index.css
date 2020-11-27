@@ -1,4 +1,19 @@
 * {
     margin: 0;
     font-family: Whitney,Helvetica Neue,Helvetica,Arial,sans-serif;
+    overflow: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #2e3338;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #202225;
+    border-radius: 5px;
 }

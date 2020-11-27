@@ -12,7 +12,6 @@ function Menu() {
             </Link>
 
             <div className='separator' />
-            {/* <Icon image='https://img.icons8.com/ios/344/discord-logo.png'/> */}
 
 
             <Link to='/channel' className='link'>

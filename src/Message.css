@@ -1,0 +1,35 @@
+.message {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    color: rgb(161, 161, 161);
+    margin-top: 20px;
+}
+
+.message_info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.message_info_title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.message_info_title_nick {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.message_info_title_date {
+    color: rgb(116, 116, 116);
+    font-size: 12px;
+    margin-left: 20px;
+}
+
+.message_info_text {
+    margin-top: 5px;
+    word-wrap: break-word;
+}

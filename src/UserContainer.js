@@ -1,24 +1,34 @@
-import React, { useState } from 'react'
-import './UserContainer.css'
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import './UserContainer.css';
 import { IoMdMic, IoMdMicOff } from "react-icons/io";
 import { GoUnmute, GoMute } from "react-icons/go";
-import { RiSettings5Fill } from "react-icons/ri";
+import { FiLogOut } from "react-icons/fi";
 import { useSelector } from 'react-redux';
 import { selectUser } from './features/counter/userSlice';
+import { auth } from './firebase';
+import Avatar from './Avatar';
 
 function UserContainer() {
     const user = useSelector(selectUser);
-    const [mute, muteChange] = useState(true)
-    const [deafen, deafenChange] = useState(true)
+    const [mute, muteChange] = useState(true);
+    const [deafen, deafenChange] = useState(true);
+    let history = useHistory();
+    let nick = ' '
+    if (user) nick = user.email.slice(0, user.email.indexOf('@'));
+
+    const logout = () => {
+        if (user) {
+            auth.signOut();
+            history.push("/");
+        }
+    }
     return (
         <div className='userContainer'>
             <div className='userContainer_left'>
-                <img
-                    src='https://play-lh.googleusercontent.com/IeNJWoKYx1waOhfWF6TiuSiWBLfqLb18lmZYXSgsH1fvb8v1IYiZr5aYWe0Gxu-pVZX3'
-                    alt='avatar'
-                />
+                <Avatar />
                 <div>
-                    <p style={{ color: 'white', fontWeight: '600' }}>{user.email}</p>
+                    <p style={{ color: 'white', fontWeight: '600' }}>{nick}</p>
                     <p>#5990</p>
                 </div>
             </div>
@@ -57,11 +67,11 @@ function UserContainer() {
                 <div className='userContainer_right_undeafenAlert'>
                     <p>Undeafen</p>
                 </div>
-                <button className='userContainer_right_settings'>
-                    <RiSettings5Fill />
+                <button onClick={logout} className='userContainer_right_settings'>
+                    <FiLogOut />
                 </button>
                 <div className='userContainer_right_settingsAlert'>
-                    <p>Settings</p>
+                    <p>Logout</p>
                 </div>
             </div>
         </div>
