@@ -3,10 +3,10 @@ import './Chat.css';
 import { MdAddCircle } from "react-icons/md";
 import { FaGift, FaSmile } from "react-icons/fa";
 import { RiFileGifFill } from "react-icons/ri";
+import { MdSend } from "react-icons/md";
 import Message from './Message';
 import { useEffect } from 'react';
 import db from './firebase';
-import Channels from './ChannelsList';
 import { useSelector } from 'react-redux';
 import { selectUser } from './features/counter/userSlice';
 
@@ -61,7 +61,7 @@ function Chat() {
             <div className='chat_sendTextField'>
                 <MdAddCircle className='chat_sendTextField_icon' />
                 <input className='chat_sendTextField_input' onChange={(event) => setMessageText(event.target.value)} />
-                <input type='submit' onClick={sendMessage} />
+                <MdSend className='chat_sendTextField_send' onClick={() => { if (messageText.length > 0) sendMessage() }} />
                 <FaGift className='chat_sendTextField_icon' />
                 <RiFileGifFill className='chat_sendTextField_icon' />
                 <FaSmile className='chat_sendTextField_icon' />

@@ -1,0 +1,26 @@
+.channel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px;
+    border-radius: 3px;
+    margin-top: 5px;
+}
+
+.channel:hover {
+    background-color:#383b41;
+}
+
+.channel_title {
+    display: flex;
+    flex-direction: row;
+}
+
+.channel_title_text {
+    margin-left: 5px;
+    font-weight: 600;
+}
+
+.channel_remove:hover {
+    color: white;
+}

@@ -1,4 +1,4 @@
-.listOfChannels {
+.friends {
     background-color: #2f3136;
     color: #72767d;
     display: flex;
@@ -6,14 +6,14 @@
     justify-content: space-between;
 }
 
-.listOfChannels_searchBar {
+.friends_searchBar {
     display: flex;
     padding: 10px;
     width: 220px;
     border-bottom: 1px solid #202225;
 }
 
-.listOfChannels_searchBar > button {
+.friends_searchBar > button {
     background-color: #202225;
     color: #72767d;
     border: none;
@@ -23,12 +23,12 @@
     border-radius: 5px;
 }
 
-.listOfChannels_directMessages_friends {
+.friends_directMessages_friends {
     display: flex;
     flex-direction: column;
 }
 
-.listOfChannels_directMessages_friends > button {
+.friends_directMessages_friends > button {
     display: flex;
     align-items: center;
     flex: 1;
@@ -42,36 +42,39 @@
     background-color: #2f3136;
 }
 
-.listOfChannels_directMessages_friends > button:hover {
+.friends_directMessages_friends > button:hover {
     background-color: #35383d;
     cursor: pointer;
     color: white;
 }
 
-.listOfChannels_directMessages_friends_icon {
+.friends_directMessages_friends_icon {
     padding-right: 10px;
     font-size: 22px;
 }
 
-.listOfChannels_directMessages_friends_title {
+.friends_directMessages_friends_title {
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
     margin: 10px;
 }
 
-.listOfChannels_directMessages_friends_title_add {
+.friends_directMessages_friends_title_add {
+    display: flex;
+    align-items: center;
     color: white;
     cursor: pointer;
     height: 10px;
     width: 10px;
 }
 
-.listOfChannels_directMessages_friends_title_add:hover > .listOfChannels_directMessages_friends_title_alert {
+.friends_directMessages_friends_title_add:hover > .friends_directMessages_friends_title_alert {
     display: flex;
 }
 
-.listOfChannels_directMessages_friends_title_alert {
+.friends_directMessages_friends_title_alert {
     position: absolute;
     display: none;
     padding: 10px;
@@ -82,7 +85,7 @@
     margin-top: -55px;
 }
 
-.listOfChannels_directMessages_friends_title_alert > p {
+.friends_directMessages_friends_title_alert > p {
     font-size: 12px;
 }
 

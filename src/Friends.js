@@ -8,21 +8,21 @@ import UserContainer from './UserContainer';
 export default class StateProvider extends Component {
     render() {
         return (
-            <div className='listOfChannels'>
+            <div className='friends'>
                 <div>
-                    <div className='listOfChannels_searchBar'>
+                    <div className='friends_searchBar'>
                         <button>Find or start a conversation</button>
                     </div>
-                    <div className='listOfChannels_directMessages'>
-                        <div className='listOfChannels_directMessages_friends'>
-                            <button><FaUserFriends className='listOfChannels_directMessages_friends_icon' />Friends</button>
-                            <button><GiSpikedSnail className='listOfChannels_directMessages_friends_icon' />Nitro</button>
-                            <div className='listOfChannels_directMessages_friends_title'>
+                    <div className='friends_directMessages'>
+                        <div className='friends_directMessages_friends'>
+                            <button><FaUserFriends className='friends_directMessages_friends_icon' />Friends</button>
+                            <button><GiSpikedSnail className='friends_directMessages_friends_icon' />Nitro</button>
+                            <div className='friends_directMessages_friends_title'>
                                 <p>DIRECT MESSAGES</p>
 
-                                <div className='listOfChannels_directMessages_friends_title_add'>
+                                <div className='friends_directMessages_friends_title_add'>
                                     +
-                                    <div className='listOfChannels_directMessages_friends_title_alert'>
+                                    <div className='friends_directMessages_friends_title_alert'>
                                         <p>Add new friend</p>
                                     </div>
                                 </div>

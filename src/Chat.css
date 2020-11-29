@@ -39,3 +39,12 @@
 .chat_sendTextField_icon {
     margin: 0 10px;
 }
+
+.chat_sendTextField_send {
+    margin-right: 10px;
+    font-size: 21px;
+}
+
+.chat_sendTextField_send:hover {
+    color: white;
+}

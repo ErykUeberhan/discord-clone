@@ -36,39 +36,6 @@ function App() {
     });
   }, [dispatch])
   return (
-    // <Router>
-    //   <div className="app">
-    //     <Switch>
-    //       <Route path='/channel'>
-    //         <Menu />
-    //         <ChannelsList />
-    //         <div className='chatField'>
-    //           <div className='chatField_menu'>
-    //             <ChatMenu />
-    //           </div>
-    //           <div className='chatField_desktop'>
-    //             <Chat />
-    //             <MembersList />
-    //           </div>
-    //         </div>
-    //       </Route>
-    //       <Route path='/'>
-    //         {
-    //           user ? (
-    //             <>
-    //               <Menu />
-    //               <Friends />
-    //               <Desktop />
-    //             </>
-    //           ) : (
-    //               <Login />
-    //             )
-    //         }
-
-    //       </Route>
-    //     </Switch>
-    //   </div>
-    // </Router >
     <Router>
       <div className="app">
         {
