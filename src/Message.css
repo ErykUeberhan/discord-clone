@@ -1,9 +1,9 @@
 .message {
     display: flex;
-    flex: 1;
     flex-direction: row;
     color: rgb(161, 161, 161);
     margin-top: 20px;
+    min-height: 42px;
 }
 
 .message_info {

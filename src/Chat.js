@@ -9,58 +9,82 @@ import { useEffect } from 'react';
 import db from './firebase';
 import { useSelector } from 'react-redux';
 import { selectUser } from './features/counter/userSlice';
+import { selectCategoryId, selectChannelId, selectChannelName } from './features/counter/appSlice';
+import firebase from 'firebase';
 
 function Chat() {
     const user = useSelector(selectUser);
-
-    const [messages, setMessages] = useState([])
-    const [messageText, setMessageText] = useState()
-
+    const categoryId = useSelector(selectCategoryId);
+    const channelId = useSelector(selectChannelId);
+    const channelName = useSelector(selectChannelName);
+    const [messages, setMessages] = useState([]);
+    const [messageText, setMessageText] = useState();
+    const [messagesEnd, setMessagesEnd] = useState();
 
 
     const sendMessage = () => {
-        let nick = ''
-        if (user) nick = user.email.slice(0, user.email.indexOf('@'));
+        console.log(channelId)
+        if (channelId) {
+            let nick = ''
+            if (user) nick = user.email.slice(0, user.email.indexOf('@'));
 
-        const dateEdit = (date) => {
-            if (date < 10) return `0${date}`
-            else return date
+            const dateEdit = (date) => {
+                if (date < 10) return `0${date}`
+                else return date
+            }
+            let d = new Date();
+            let day = d.getDate();
+            let month = d.getMonth();
+            let year = d.getFullYear();
+            let hours = d.getHours();
+            let minutes = d.getMinutes();
+            let date = `${dateEdit(hours)}:${dateEdit(minutes)} \xa0 ${dateEdit(day)}/${dateEdit(month)}/${dateEdit(year)}`;
+
+            db.collection('categories').doc(categoryId).collection('channels').doc(channelId).collection('messages').add({
+                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                message: messageText,
+                nick,
+                date,
+            })
         }
-        let d = new Date();
-        let day = d.getDate();
-        let month = d.getMonth();
-        let year = d.getFullYear();
-        let hours = d.getHours();
-        let minutes = d.getMinutes();
-        let date = `${dateEdit(hours)}:${dateEdit(minutes)} \xa0 ${dateEdit(day)}/${dateEdit(month)}/${dateEdit(year)}`;
-
-        db.collection('messages').add({
-            message: messageText,
-            nick,
-            date,
-        })
     }
 
     useEffect(() => {
-        db.collection("messages").onSnapshot((snapshot) =>
-            setMessages(
-                snapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    msg: doc.data(),
-                }))
-            )
-        );
-    }, [])
+        if (channelId) {
+            db.collection('categories').doc(categoryId).collection('channels').doc(channelId).collection("messages").orderBy('timestamp').onSnapshot((snapshot) =>
+                setMessages(
+                    snapshot.docs.map((doc) => ({
+                        id: doc.id,
+                        msg: doc.data(),
+                    }))
+                )
+            );
+        }
+
+    }, [channelId])
     return (
         <div className='chat'>
             <div className='chat_messages'>
-                {messages.map(({ id, msg }) => (
-                    <Message key={id} id={id} message={msg.message} nick={msg.nick} date={msg.date} />
-                ))}
+                <div className='chat_messages_top'>
+
+                </div>
+                <div className='chat_messages_bottom' >
+                    {messages.map(({ id, msg }) => (
+                        <Message key={id} id={id} message={msg.message} nick={msg.nick} date={msg.date} />
+                    ))}
+                    {(messagesEnd)
+                        ?
+                        messagesEnd.scrollIntoView({ behavior: 'smooth' })
+                        :
+                        null
+                    }
+                    <div ref={(el) => setMessagesEnd(el)}>
+                    </div>
+                </div>
             </div>
             <div className='chat_sendTextField'>
                 <MdAddCircle className='chat_sendTextField_icon' />
-                <input className='chat_sendTextField_input' onChange={(event) => setMessageText(event.target.value)} />
+                <input className='chat_sendTextField_input' onChange={(event) => setMessageText(event.target.value)} placeholder={`Message #${channelName}`} />
                 <MdSend className='chat_sendTextField_send' onClick={() => { if (messageText.length > 0) sendMessage() }} />
                 <FaGift className='chat_sendTextField_icon' />
                 <RiFileGifFill className='chat_sendTextField_icon' />

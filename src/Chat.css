@@ -7,8 +7,14 @@
 }
 
 .chat_messages {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     padding: 20px;
     flex: 1;
+}
+
+.chat_messages_bottom {
     overflow: auto;
 }
 
@@ -16,7 +22,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    /* padding: 0 5px; */
     margin: 0 16px 22px 16px;
     background-color: #40444b;
     border-radius: 10px;

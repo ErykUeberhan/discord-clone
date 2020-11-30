@@ -24,12 +24,14 @@ function Category({ id, title }) {
     }
 
     const removeChannel = () => {
-        const channel = db.collection('categories').doc(categoryId).collection('channels');
         const category = db.collection('categories').doc(categoryId);
-        // channel.update({
-        //     channels: firebase.firestore.FieldValue.delete()
-        // })
-        console.log(channel);
+        const channel = db.collection('categories').doc(categoryId).collection('channels');
+        channel.get().then(res => {
+            res.forEach(element => {
+                element.ref.delete();
+            });
+        });
+        category.delete();
     }
 
     useEffect(() => {
