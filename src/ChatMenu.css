@@ -15,7 +15,9 @@
 
 .chatMenu_left_title {
     color: white;
-    margin-left: 5px;
+    margin-left: 7px;
+    font-size: 14px;
+    font-weight: 700;
 }
 
 .chatMenu_right {

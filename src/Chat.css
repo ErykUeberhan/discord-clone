@@ -18,6 +18,38 @@
     overflow: auto;
 }
 
+.chat_messages_bottom_emptyChannel {
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    flex-direction: column;
+}
+
+.chat_messages_bottom_emptyChannel_icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 68px;
+    width: 68px;
+    border-radius: 100%;
+    font-size: 40px;
+    color: white;
+    background-color: #4f545c;
+    margin-bottom: 10px;
+}
+
+.chat_messages_bottom_emptyChannel_welcome {
+    color: white;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.chat_messages_bottom_emptyChannel_description {
+    color: #adbbbe;
+    font-size: 12px;
+}
+
 .chat_sendTextField {
     display: flex;
     flex-direction: row;

@@ -8,9 +8,11 @@ import { useSelector } from 'react-redux';
 import { selectUser } from './features/counter/userSlice';
 import { auth } from './firebase';
 import Avatar from './Avatar';
+import firebase from 'firebase';
 
 function UserContainer() {
     const user = useSelector(selectUser);
+    const u = firebase.auth().currentUser;
     const [mute, muteChange] = useState(true);
     const [deafen, deafenChange] = useState(true);
     let history = useHistory();
@@ -26,7 +28,7 @@ function UserContainer() {
     return (
         <div className='userContainer'>
             <div className='userContainer_left'>
-                <Avatar />
+                <Avatar avatarColor={u.photoURL} />
                 <div>
                     <p style={{ color: 'white', fontWeight: '600' }}>{nick}</p>
                     <p>#5990</p>

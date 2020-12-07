@@ -12,22 +12,29 @@ import Menu from './Menu';
 import { selectUser, login, logout } from './features/counter/userSlice';
 import { auth } from './firebase'
 import Login from './Login';
+import firebase from 'firebase';
 
 function App() {
   const dispatch = useDispatch();
 
   const user = useSelector(selectUser);
 
+
   let history = useHistory();
 
   useEffect(() => {
-    let avatarColor = `rgb(${Math.random() * (255)}, ${Math.random() * (255)}, ${Math.random() * (255)}`
+    let avatarColor = `rgb(${Math.ceil(Math.random() * 255)}, ${Math.ceil(Math.random() * 255)}, ${Math.ceil(Math.random() * 255)})`
+    const u = firebase.auth().currentUser;
+    if (user && !u.photoURL) {
+      u.updateProfile({
+        photoURL: avatarColor,
+      })
+    }
     auth.onAuthStateChanged((authUser) => {
       console.log('user is:', authUser);
       if (authUser) {
         dispatch(login({
           email: authUser.email,
-          avatarColor: avatarColor,
         })
         );
       } else {

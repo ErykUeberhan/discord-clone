@@ -5,13 +5,16 @@ import { BsFillPersonFill } from "react-icons/bs";
 import { CgInbox } from "react-icons/cg";
 import { IoMdHelpCircle } from "react-icons/io";
 import { FaHashtag } from "react-icons/fa";
+import { useSelector } from 'react-redux';
+import { selectChannelName } from './features/counter/appSlice';
 
 function ChatMenu({ title }) {
+    const channelName = useSelector(selectChannelName);
     return (
         <div className='chatMenu'>
             <div className='chatMenu_left'>
                 <FaHashtag />
-                <p className='chatMenu_left_title'>{title}3</p>
+                <p className='chatMenu_left_title'>{channelName}</p>
             </div>
             <div className='chatMenu_right'>
                 <AiFillBell className='chatMenu_right_navIcon' />

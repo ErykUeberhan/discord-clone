@@ -1,0 +1,21 @@
+.mainPageIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    width: 48px;
+    height: 48px;
+    background-color: #36393f;
+    transition: all 0.2s ease;
+}
+
+.mainPageIcon:hover {
+    border-radius: 30%;
+    background-color: #8ea1e1;
+}
+
+.mainPageIcon_img {
+    object-fit: fill;
+    width: 30px;
+    height: 30px;
+}
