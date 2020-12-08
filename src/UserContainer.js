@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './UserContainer.css';
 import { IoMdMic, IoMdMicOff } from "react-icons/io";
@@ -13,6 +13,7 @@ import firebase from 'firebase';
 function UserContainer() {
     const user = useSelector(selectUser);
     const u = firebase.auth().currentUser;
+    const [loops, setLoops] = useState(true);
     const [mute, muteChange] = useState(true);
     const [deafen, deafenChange] = useState(true);
     let history = useHistory();
@@ -25,16 +26,17 @@ function UserContainer() {
             history.push("/");
         }
     }
+
     return (
         <div className='userContainer'>
-            <div className='userContainer_left'>
+            <div className='userContainer_left' onClick={() => console.log(u)}>
                 <Avatar avatarColor={u.photoURL} />
                 <div>
                     <p style={{ color: 'white', fontWeight: '600' }}>{nick}</p>
                     <p>#5990</p>
                 </div>
             </div>
-            <div className='userContainer_right'>
+            <div className='userContainer_right' onClick={() => console.log(user)}>
                 {
                     mute
                         ?

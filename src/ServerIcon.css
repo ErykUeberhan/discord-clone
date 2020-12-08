@@ -6,12 +6,16 @@
     width: 48px;
     height: 48px;
     background-color: #36393f;
-    transition: all 0.2s ease;
+    transition: all .2s ease;
 }
 
 .serverIcon:hover {
     border-radius: 30%;
     background-color: #8ea1e1;
+}
+
+.serverIcon:hover .serverIcon_remove {
+    opacity: 1;
 }
 
 .serverIcon_title {
@@ -20,6 +24,23 @@
     font-weight: 600;
 }
 
+.serverIcon_remove {
+    position: absolute;
+    margin-top: -40px;
+    margin-left: 40px;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    background-color: red;
+    height: 13px;
+    width: 13px;
+    border-radius: 100%;
+    transition: all 0.2s ease;
+}
+
 a {
     text-decoration: none;
 }
+

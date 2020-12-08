@@ -4,7 +4,7 @@ import { FiChevronDown, FiChevronRight } from 'react-icons/fi'
 import Channel from './Channel'
 import db from './firebase'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectCategoryId, selectServerId, setCategoryInfo } from './features/counter/appSlice'
+import { selectCategoryId, selectServerId, setCategoryInfo, setChannelInfo } from './features/counter/appSlice'
 import firebase from 'firebase'
 import { BsX, BsPlus } from "react-icons/bs";
 
@@ -24,15 +24,34 @@ function Category({ id, title }) {
         }
     }
 
-    const removeChannel = () => {
+    const removeCategory = () => {
         const category = db.collection('servers').doc(serverId).collection('categories').doc(categoryId);
-        const channel = db.collection('servers').doc(serverId).collection('categories').doc(categoryId).collection('channels');
-        channel.get().then(res => {
-            res.forEach(element => {
+        const channel = category.collection('channels');
+        channel.get().then((res) => {
+            res.forEach((element) => {
+                element.ref.collection('messages').get().then((res) => {
+                    res.forEach((element) => {
+                        element.ref.delete();
+                    });
+                    element.ref.delete();
+                });
                 element.ref.delete();
             });
         });
+
         category.delete();
+
+        dispatch(
+            setChannelInfo({
+                channelId: null,
+            })
+        );
+
+        dispatch(
+            setCategoryInfo({
+                categoryId: null,
+            })
+        );
     }
 
     useEffect(() => {
@@ -47,12 +66,15 @@ function Category({ id, title }) {
     }, [categoryId])
     return (
         <div className='category' onClick={() => {
-            dispatch(
-                setCategoryInfo({
-                    categoryId: id,
-                    categoryName: title,
-                })
-            )
+            if (id != categoryId) {
+                dispatch(
+                    setCategoryInfo({
+                        categoryId: id,
+                        categoryName: title,
+                    })
+                )
+            }
+
         }}>
             <div className='category_header'>
                 <div className='category_header_title'>
@@ -69,7 +91,7 @@ function Category({ id, title }) {
                         ?
                         <>
                             <BsPlus className='category_header_menu_add' onClick={addChannel} />
-                            <BsX className='category_header_menu_remove' onClick={removeChannel} />
+                            <BsX className='category_header_menu_remove' onClick={(e) => { e.stopPropagation(); removeCategory() }} />
                         </>
                         : null
                     }

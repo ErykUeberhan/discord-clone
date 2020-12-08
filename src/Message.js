@@ -5,10 +5,6 @@ import { useSelector } from 'react-redux';
 import { selectUser } from './features/counter/userSlice';
 
 function Message({ id, message, nick, date, avatarColor }) {
-    // const user = useSelector(selectUser);
-
-    // let avatarColor = 'rgba(0, 0, 0, 0)';
-    // if (user) avatarColor = user.avatarColor;
 
     return (
         <div className='message'>

@@ -24,8 +24,17 @@ function ChannelsListHeader() {
 
     return (
         <div className='channelsListHeader'>
-            <p className='channelsListHeader_title'>{serverName}</p>
-            <BsPlus className='channelsListHeader_title_add' onClick={addCategory} />
+            {
+                serverId
+                    ?
+                    <>
+                        <p className='channelsListHeader_title'>{serverName}</p>
+                        <BsPlus className='channelsListHeader_title_add' onClick={addCategory} />
+                    </>
+                    :
+                    null
+            }
+
         </div>
     )
 }

@@ -2,17 +2,24 @@ import React, { useState } from 'react';
 import './Login.css';
 import { useHistory } from "react-router-dom";
 import { auth } from './firebase';
+import firebase from 'firebase';
+import { selectUser } from './features/counter/userSlice';
+import { useSelector } from 'react-redux';
 
 function Login() {
     const history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const user = useSelector(selectUser);
 
     const login = (event) => {
         event.preventDefault();
 
+
+
         auth.signInWithEmailAndPassword(email, password)
             .then((auth) => {
+
                 history.push('/');
             })
             .catch((e) => alert(e.message));
@@ -21,9 +28,12 @@ function Login() {
     const register = (event) => {
         event.preventDefault();
 
+
+
+
         auth.createUserWithEmailAndPassword(email, password)
             .then((auth) => {
-                history.push('/');
+
             })
             .catch((e) => alert(e.message));
     };

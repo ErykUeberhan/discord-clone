@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import ServerIcon from './ServerIcon'
 import MainPageIcon from './MainPageIcon'
 import './Menu.css'
@@ -8,18 +8,17 @@ import DownloadIcon from './DownloadIcon'
 import ExploreIcon from './ExploreIcon'
 import AddServerIcon from './AddServerIcon'
 import db from './firebase';
-import { useSelector } from 'react-redux';
-import { selectServerId, selectServerName } from './features/counter/appSlice';
-import firebase from 'firebase';
+
 
 function Menu() {
-    const serverName = useSelector(selectServerName);
-    const serverId = useSelector(selectServerId);
     const [servers, setServers] = useState([]);
+    const history = useHistory();
 
+    if (servers.length == 0) {
+        history.push('/');
+    }
 
     useEffect(() => {
-
         db.collection('servers').orderBy('timestamp').onSnapshot((snapshot) =>
             setServers(snapshot.docs.map((doc) => ({
                 id: doc.id,
@@ -30,14 +29,14 @@ function Menu() {
     }, [])
     return (
         <div className='menu'>
-            <Link to='/' className='link'>
+            <Link to='/' className='menu_link'>
                 <MainPageIcon image={avatar} />
             </Link>
 
             <div className='separator' />
 
             {servers.map(({ id, server }) => (
-                <Link to='/channel' className='link'>
+                <Link to='/channel' className='menu_link'>
                     <ServerIcon key={id} id={id} title={server.serverName} />
                 </Link>
             ))}

@@ -20,16 +20,26 @@ function Channel({ id, title }) {
                 element.ref.delete();
             })
         })
+
         channel.delete();
+
+        dispatch(
+            setChannelInfo({
+                channelId: null,
+            })
+        )
+
     }
     return (
         <div className='channel' onClick={() => {
-            dispatch(
-                setChannelInfo({
-                    channelId: id,
-                    channelName: title,
-                })
-            )
+            if (id != channelId) {
+                dispatch(
+                    setChannelInfo({
+                        channelId: id,
+                        channelName: title,
+                    })
+                )
+            }
         }}>
             <div className='channel_title'>
                 <FaHashtag />
