@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import ChannelsList from './ChannelsList';
 import Chat from './Chat';
@@ -13,12 +13,14 @@ import { selectUser, login, logout } from './features/counter/userSlice';
 import { auth } from './firebase'
 import Login from './Login';
 import firebase from 'firebase';
+import { selectMobileMenu } from './features/counter/appSlice';
+import MobileChannelsList from './MobileChannelsList';
 
 function App() {
   const dispatch = useDispatch();
 
   const user = useSelector(selectUser);
-  //const u = firebase.auth().currentUser;
+  const mobileMenu = useSelector(selectMobileMenu);
 
   const color = (rand) => {
     if (rand <= 0.16) {
@@ -55,7 +57,6 @@ function App() {
   useEffect(() => {
 
     auth.onAuthStateChanged((authUser) => {
-      console.log('user is:', authUser);
       if (authUser) {
         dispatch(login({
           email: authUser.email,
@@ -74,16 +75,29 @@ function App() {
           <Switch>
             <Route path='/channel'>
               <Menu />
-              <ChannelsList />
-              <div className='chatField'>
-                <div className='chatField_menu'>
-                  <ChatMenu />
-                </div>
-                <div className='chatField_desktop'>
-                  <Chat />
-                  <MembersList />
-                </div>
-              </div>
+              {
+                mobileMenu === true
+                  ?
+                  <>
+                    <MobileChannelsList />
+                    <MembersList />
+                  </>
+                  :
+                  <>
+                    <ChannelsList />
+                    <div className='chatField'>
+                      <div className='chatField_menu'>
+                        <ChatMenu />
+                      </div>
+                      <div className='chatField_desktop'>
+                        <Chat />
+                        <MembersList />
+                      </div>
+                    </div>
+                  </>
+              }
+
+
             </Route>
             <Route path='/'>
               <Menu />

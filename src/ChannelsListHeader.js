@@ -1,8 +1,6 @@
 import React from 'react'
 import './ChannelsListHeader.css'
-import { FiChevronDown } from 'react-icons/fi'
-import { BiMessageAltAdd } from "react-icons/bi";
-import { BsX, BsPlus } from "react-icons/bs";
+import { BsPlus } from "react-icons/bs";
 import db from './firebase';
 import firebase from 'firebase';
 import { useSelector } from 'react-redux';

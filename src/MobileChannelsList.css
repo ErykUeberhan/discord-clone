@@ -1,0 +1,14 @@
+.mobileChannelsList {
+    background-color: #2f3136;
+    color: #72767d;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 240px;
+}
+
+@media screen and (min-width: 380px) {
+    .mobileChannelsList {
+    flex: 1;
+    }
+}

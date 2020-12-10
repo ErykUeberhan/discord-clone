@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './UserContainer.css';
 import { IoMdMic, IoMdMicOff } from "react-icons/io";
@@ -13,7 +13,6 @@ import firebase from 'firebase';
 function UserContainer() {
     const user = useSelector(selectUser);
     const u = firebase.auth().currentUser;
-    const [loops, setLoops] = useState(true);
     const [mute, muteChange] = useState(true);
     const [deafen, deafenChange] = useState(true);
     let history = useHistory();

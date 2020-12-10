@@ -3,6 +3,8 @@ import './FriendRequest.css'
 
 function FriendRequest() {
     const [toggle, toggleChange] = useState(false)
+
+    // check that input in not empty and unlock button
     let buttonAvailable = (event) => {
         if (event.target.value.length > 0) {
             toggleChange(true)

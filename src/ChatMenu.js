@@ -28,7 +28,7 @@ function ChatMenu({ title }) {
                 <input className='chatMenu_right_searchBar' type='text' placeholder='Search' />
                 <AiOutlineSearch className='chatMenu_right_searchIcon' />
                 <CgInbox className='chatMenu_right_navIcon' onClick={() => dispatch(setChannelInfo({ channelId: null }))} />
-                <IoMdHelpCircle className='chatMenu_right_navIcon' onClick={() => console.log(`${serverId} | ${categoryId} | ${channelId}`)} />
+                <IoMdHelpCircle className='chatMenu_right_navIcon' onClick={() => console.log(`width: ${window.innerWidth}, height: ${window.innerHeight}`)} />
             </div>
         </div>
     )

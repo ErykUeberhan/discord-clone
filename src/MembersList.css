@@ -4,3 +4,9 @@
     background-color: #2f3136;
     width: 240px;
 }
+
+@media screen and (max-width: 980px) {
+    .membersList {
+        display: none;
+    }
+}

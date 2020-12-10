@@ -1,8 +1,6 @@
 import React from 'react'
 import './Message.css';
 import Avatar from './Avatar'
-import { useSelector } from 'react-redux';
-import { selectUser } from './features/counter/userSlice';
 
 function Message({ id, message, nick, date, avatarColor }) {
 

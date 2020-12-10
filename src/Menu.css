@@ -10,17 +10,18 @@
     box-sizing: border-box;
 }
 
-.menu > div {
-    margin-bottom: 8px;
-}
-
-.menu_link > div {
-    margin-bottom: 8px;
-}
-
 .separator {
-    width: 32px;
+    flex: 1;
     height: 2px;
     border-radius: 1px;
     background-color: #36393f;
+    margin-bottom: 8px;
+}
+
+.menu_scrollDiv {
+    overflow: auto;
+}
+
+.menu_scrollDiv::-webkit-scrollbar {
+    display: none;
 }

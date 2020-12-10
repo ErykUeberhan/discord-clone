@@ -21,14 +21,15 @@ function Chat() {
     const channelId = useSelector(selectChannelId);
     const channelName = useSelector(selectChannelName);
     const [messages, setMessages] = useState([]);
-    const [messageText, setMessageText] = useState();
+    const [messageText, setMessageText] = useState('');
     const [messagesEnd, setMessagesEnd] = useState();
-    const [serverName, setServerName] = useState('server');
+    const [messagesCounter, setMessagesCounter] = useState(messages.length);
+    const [serverName] = useState('server');
 
 
     const sendMessage = () => {
         console.log(channelId)
-        if (channelId) {
+        if (channelId && messageText.length > 0) {
             let nick = ''
             if (user) nick = user.email.slice(0, user.email.indexOf('@'));
 
@@ -51,10 +52,19 @@ function Chat() {
                 date,
                 avatarColor: u.photoURL,
             })
+            setMessageText('');
         }
     }
 
+    const lol = () => {
+        messages.map(({ id, msg }) => (
+            <Message key={id} id={id} message={msg.message} nick={msg.nick} date={msg.date} avatarColor={msg.avatarColor} />
+
+        ));
+    }
+
     useEffect(() => {
+        console.log(messages);
         if (channelId) {
             db.collection('servers').doc(serverId).collection('categories').doc(categoryId).collection('channels').doc(channelId).collection("messages").orderBy('timestamp').onSnapshot((snapshot) =>
                 setMessages(
@@ -65,7 +75,7 @@ function Chat() {
                 )
             );
         }
-    }, [channelId])
+    }, [channelId, categoryId, serverId])
     return (
         <div className='chat'>
             <div className='chat_messages'>
@@ -73,20 +83,31 @@ function Chat() {
 
                 </div>
                 <div className='chat_messages_bottom' >
-                    <div className='chat_messages_bottom_emptyChannel'>
-                        <div className='chat_messages_bottom_emptyChannel_icon'><FaHashtag /></div>
-                        <p className='chat_messages_bottom_emptyChannel_welcome'>Welcome to #{channelName ? channelName : serverName}!</p>
+                    <div className='chat_messages_bottom_channel'>
+                        <div className='chat_messages_bottom_channel_icon'><FaHashtag /></div>
+                        <p className='chat_messages_bottom_channel_welcome'>Welcome to #{channelName ? channelName : serverName}!</p>
                         {
                             channelName
                                 ?
-                                <p className='chat_messages_bottom_emptyChannel_description'>This is the start of the #{channelName ? channelName : serverName} channel.</p>
+                                <p className='chat_messages_bottom_channel_description'>This is the start of the #{channelName ? channelName : serverName} channel.</p>
                                 :
-                                <p className='chat_messages_bottom_emptyChannel_description'>Choose category and channel.</p>
+                                <p className='chat_messages_bottom_channel_description'>Choose category and channel.</p>
                         }
                     </div>
-                    {messages.map(({ id, msg }) => (
-                        <Message key={id} id={id} message={msg.message} nick={msg.nick} date={msg.date} avatarColor={msg.avatarColor} />
-                    ))}
+                    {channelId
+                        ?
+                        messages.map(({ id, msg }) => (
+                            <Message key={id} id={id} message={msg.message} nick={msg.nick} date={msg.date} avatarColor={msg.avatarColor} />
+
+                        ))
+                        :
+                        null
+                    }
+
+
+                    <div ref={(el) => setMessagesEnd(el)}>
+                    </div>
+
                     {(messagesEnd)
                         ?
                         messagesEnd.scrollIntoView({ behavior: 'smooth' })
@@ -94,25 +115,23 @@ function Chat() {
                         null
                     }
 
-
-
-                    <div ref={(el) => setMessagesEnd(el)}>
-                    </div>
                 </div>
             </div>
             <div className='chat_sendTextField'>
+
                 <MdAddCircle className='chat_sendTextField_icon' />
                 {
                     channelName
                         ?
-                        <input className='chat_sendTextField_input' onChange={(event) => setMessageText(event.target.value)} placeholder={`Message #${channelName}`} />
+                        <input className='chat_sendTextField_input' onChange={(event) => setMessageText(event.target.value)} onKeyPress={(event) => { if (event.charCode === 13) sendMessage() }} value={messageText} placeholder={`Message #${channelName}`} />
                         :
-                        <input className='chat_sendTextField_input' onChange={(event) => setMessageText(event.target.value)} placeholder={`Message #${serverName}`} readOnly='readonly' />
+                        <input className='chat_sendTextField_input' onChange={(event) => setMessageText(event.target.value)} value={messageText} placeholder={`Message #${serverName}`} readOnly='readonly' />
                 }
-                <MdSend className='chat_sendTextField_send' onClick={() => { if (channelName && messageText.length > 0) sendMessage() }} />
+                <MdSend className='chat_sendTextField_send' onClick={sendMessage} />
                 <FaGift className='chat_sendTextField_icon' />
                 <RiFileGifFill className='chat_sendTextField_icon' />
                 <FaSmile className='chat_sendTextField_icon' onClick={() => console.log(u.photoURL)} />
+
             </div>
         </div>
     )

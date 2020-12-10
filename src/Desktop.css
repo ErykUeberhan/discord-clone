@@ -4,3 +4,9 @@
     background-color: #36393f;
     flex: 1;
 }
+
+@media screen and (max-width: 380px) {
+    .desktop {
+        display: none;
+    }
+}

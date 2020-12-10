@@ -18,14 +18,13 @@
     overflow: auto;
 }
 
-.chat_messages_bottom_emptyChannel {
+.chat_messages_bottom_channel {
     display: flex;
-    /* align-items: center; */
     justify-content: center;
     flex-direction: column;
 }
 
-.chat_messages_bottom_emptyChannel_icon {
+.chat_messages_bottom_channel_icon {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,14 +37,14 @@
     margin-bottom: 10px;
 }
 
-.chat_messages_bottom_emptyChannel_welcome {
+.chat_messages_bottom_channel_welcome {
     color: white;
     font-size: 30px;
     font-weight: 700;
     margin-bottom: 10px;
 }
 
-.chat_messages_bottom_emptyChannel_description {
+.chat_messages_bottom_channel_description {
     color: #adbbbe;
     font-size: 12px;
 }
@@ -84,4 +83,14 @@
 
 .chat_sendTextField_send:hover {
     color: white;
+}
+
+@media screen and (max-width: 360px) {
+    .chat_sendTextField_icon {
+        display: none;
+    }
+
+    .chat_sendTextField_input {
+        margin: 0 10px;
+    }
 }

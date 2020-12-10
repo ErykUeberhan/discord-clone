@@ -7,6 +7,7 @@
     height: 48px;
     background-color: #36393f;
     transition: all 0.2s ease;
+    margin-bottom: 8px;
 }
 
 .mainPageIcon:hover {

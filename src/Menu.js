@@ -8,13 +8,14 @@ import DownloadIcon from './DownloadIcon'
 import ExploreIcon from './ExploreIcon'
 import AddServerIcon from './AddServerIcon'
 import db from './firebase';
+import MobileMenu from './MobileMenuIcon'
 
 
 function Menu() {
     const [servers, setServers] = useState([]);
     const history = useHistory();
 
-    if (servers.length == 0) {
+    if (servers.length === 0) {
         history.push('/');
     }
 
@@ -29,22 +30,28 @@ function Menu() {
     }, [])
     return (
         <div className='menu'>
-            <Link to='/' className='menu_link'>
-                <MainPageIcon image={avatar} />
-            </Link>
+            <div className='menu_scrollDiv'>
+                <MobileMenu />
 
-            <div className='separator' />
-
-            {servers.map(({ id, server }) => (
-                <Link to='/channel' className='menu_link'>
-                    <ServerIcon key={id} id={id} title={server.serverName} />
+                <Link to='/' className='menu_link'>
+                    <MainPageIcon image={avatar} />
                 </Link>
-            ))}
 
-            <AddServerIcon />
-            <ExploreIcon />
-            <div className='separator' />
-            <DownloadIcon />
+                <div className='separator' />
+
+                {servers.map(({ id, server }) => (
+                    <Link to='/channel' className='menu_link'>
+                        <ServerIcon key={id} id={id} title={server.serverName} />
+                    </Link>
+                ))}
+
+
+
+                <AddServerIcon />
+                <ExploreIcon />
+                <div className='separator' />
+                <DownloadIcon />
+            </div>
         </div>
     )
 }

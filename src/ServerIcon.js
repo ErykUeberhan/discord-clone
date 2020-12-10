@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectServerId, setServerInfo, setChannelInfo, setCategoryInfo, selectCategoryId, selectChannelId } from './features/counter/appSlice';
+import { selectServerId, setServerInfo, setChannelInfo, setCategoryInfo } from './features/counter/appSlice';
 import './ServerIcon.css'
 import { BsX } from "react-icons/bs";
 import db from './firebase';
@@ -9,8 +9,6 @@ import db from './firebase';
 function ServerIcon({ id, title }) {
     const dispatch = useDispatch();
     const serverId = useSelector(selectServerId);
-    const categoryId = useSelector(selectCategoryId);
-    const channelId = useSelector(selectChannelId);
 
     const removeServer = () => {
         const server = db.collection('servers');
@@ -56,7 +54,21 @@ function ServerIcon({ id, title }) {
     }
     return (
         <div className='serverIcon' onClick={() => {
-            if (id != serverId) {
+            if (id !== serverId) {
+                dispatch(
+                    setChannelInfo({
+                        channelId: null,
+                        channelName: null,
+                    })
+                )
+
+                dispatch(
+                    setCategoryInfo({
+                        categoryId: null,
+                        channelName: null,
+                    })
+                )
+
                 dispatch(
                     setServerInfo({
                         serverId: id,

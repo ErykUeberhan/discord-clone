@@ -32,7 +32,7 @@ function Channel({ id, title }) {
     }
     return (
         <div className='channel' onClick={() => {
-            if (id != channelId) {
+            if (id !== channelId) {
                 dispatch(
                     setChannelInfo({
                         channelId: id,

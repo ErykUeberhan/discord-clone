@@ -54,3 +54,13 @@
     color: #72767d;
     font-size: 16px;
 }
+
+@media screen and (max-width: 460px) {
+    .chatMenu_right_searchBar {
+        display: none;
+    }
+
+    .chatMenu_right_searchIcon {
+        display: none;
+    }
+}

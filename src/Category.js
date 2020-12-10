@@ -63,10 +63,17 @@ function Category({ id, title }) {
                 }))));
         }
 
-    }, [categoryId])
+    }, [categoryId, serverId])
     return (
         <div className='category' onClick={() => {
-            if (id != categoryId) {
+            if (id !== categoryId) {
+                dispatch(
+                    setChannelInfo({
+                        channelId: null,
+                        channelName: null,
+                    })
+                )
+
                 dispatch(
                     setCategoryInfo({
                         categoryId: id,
@@ -91,7 +98,7 @@ function Category({ id, title }) {
                         ?
                         <>
                             <BsPlus className='category_header_menu_add' onClick={addChannel} />
-                            <BsX className='category_header_menu_remove' onClick={(e) => { e.stopPropagation(); removeCategory() }} />
+                            <BsX className='category_header_menu_remove' onClick={removeCategory} />
                         </>
                         : null
                     }
