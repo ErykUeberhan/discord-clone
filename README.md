@@ -1,6 +1,9 @@
 # 💻 Discord chat clone single-page application 💻 
 That is a trening project used to learn how to make a online chat.
 
+## 💢 Link to app: 💢
+https://discord-clone-47751.web.app
+
 ## 🔍 Table of contents 🔍
 * [General info](#general-info)
 * [Technologies](#technologies)
