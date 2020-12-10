@@ -36,6 +36,7 @@ Project is in progress
 
 🔧 To-do list:
 * Inviting to friends
+* Show list of users chatting in channel
 * Direct messages
 * Voice channels
 * Allow to send gifs/light images on chat
