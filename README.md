@@ -1,4 +1,4 @@
-# 💻 Discord chat clone single-page application 💻 
+# 💬 Discord chat clone single-page application 💬 
 That is a trening project used to learn how to make a online chat.
 
 ## 💢 Link to app: 💢
