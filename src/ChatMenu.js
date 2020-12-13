@@ -5,15 +5,11 @@ import { BsFillPersonFill } from "react-icons/bs";
 import { CgInbox } from "react-icons/cg";
 import { IoMdHelpCircle } from "react-icons/io";
 import { FaHashtag } from "react-icons/fa";
-import { useDispatch, useSelector } from 'react-redux';
-import { selectCategoryId, selectChannelId, selectChannelName, selectServerId, setChannelInfo } from './features/counter/appSlice';
+import { useSelector } from 'react-redux';
+import { selectChannelName } from './features/counter/appSlice';
 
-function ChatMenu({ title }) {
-    const dispatch = useDispatch();
+function ChatMenu() {
     const channelName = useSelector(selectChannelName);
-    const serverId = useSelector(selectServerId);
-    const categoryId = useSelector(selectCategoryId);
-    const channelId = useSelector(selectChannelId);
 
     return (
         <div className='chatMenu'>
@@ -27,8 +23,8 @@ function ChatMenu({ title }) {
                 <BsFillPersonFill className='chatMenu_right_navIcon' />
                 <input className='chatMenu_right_searchBar' type='text' placeholder='Search' />
                 <AiOutlineSearch className='chatMenu_right_searchIcon' />
-                <CgInbox className='chatMenu_right_navIcon' onClick={() => dispatch(setChannelInfo({ channelId: null }))} />
-                <IoMdHelpCircle className='chatMenu_right_navIcon' onClick={() => console.log(`width: ${window.innerWidth}, height: ${window.innerHeight}`)} />
+                <CgInbox className='chatMenu_right_navIcon' />
+                <IoMdHelpCircle className='chatMenu_right_navIcon' />
             </div>
         </div>
     )

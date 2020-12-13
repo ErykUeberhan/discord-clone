@@ -9,6 +9,7 @@ function MobileMenuIcon() {
     const dispatch = useDispatch();
     const mobileMenu = useSelector(selectMobileMenu);
 
+    // set window size to variables
     function useWindowSize() {
         const [size, setSize] = useState([0, 0]);
         useLayoutEffect(() => {
@@ -22,9 +23,10 @@ function MobileMenuIcon() {
         return size;
     }
 
-
+    // select window width
     const [width] = useWindowSize();
 
+    // set mobile version depends on window size
     if (width >= 740) {
         dispatch(
             setMobileVersion({
@@ -34,11 +36,12 @@ function MobileMenuIcon() {
     }
     return (
         <div className='mobileMenuIcon' onClick={() => {
+            // show mobile menu
             dispatch(
                 setMobileVersion({
                     mobileMenu: !mobileMenu,
                 })
-            ); console.log(width)
+            )
         }}>
             <GiHamburgerMenu className='mobileMenuIcon_icon' />
         </div>

@@ -10,6 +10,7 @@ function ChannelsListHeader() {
     const serverId = useSelector(selectServerId);
     const serverName = useSelector(selectServerName);
 
+    // add category to database
     const addCategory = () => {
         const categoryName = prompt('New category name: ');
         if (serverId && categoryName) {

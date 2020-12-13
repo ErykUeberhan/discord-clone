@@ -11,6 +11,7 @@ function MobileChannelsList() {
     const serverId = useSelector(selectServerId);
     const [categories, setCategories] = useState([]);
 
+    // insert data from database to categories array
     useEffect(() => {
         if (serverId) {
             db.collection('servers').doc(serverId).collection('categories').orderBy('timestamp').onSnapshot((snapshot) => {
@@ -29,7 +30,8 @@ function MobileChannelsList() {
             <div className='mobileChannelsList_top'>
                 <ChannelsListHeader title='Channel' />
                 <div className='mobileChannelsList_body'>
-                    {categories.map(({ id, category }) => (
+                    {// render channels from array
+                    categories.map(({ id, category }) => (
                         <Category key={id} id={id} title={category.categoryName} />
                     ))}
                 </div>

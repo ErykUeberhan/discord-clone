@@ -14,6 +14,7 @@ function Category({ id, title }) {
     const [channels, setChannels] = useState([])
     const dispatch = useDispatch();
 
+    // add channel to database
     const addChannel = () => {
         const channelName = prompt('Add channel:');
         if (channelName) {
@@ -24,9 +25,12 @@ function Category({ id, title }) {
         }
     }
 
+    // remove category from database
     const removeCategory = () => {
         const category = db.collection('servers').doc(serverId).collection('categories').doc(categoryId);
         const channel = category.collection('channels');
+
+        // remove data belonging to this category
         channel.get().then((res) => {
             res.forEach((element) => {
                 element.ref.collection('messages').get().then((res) => {
@@ -39,8 +43,10 @@ function Category({ id, title }) {
             });
         });
 
+        // delete category
         category.delete();
 
+        // set local info about removed data to null
         dispatch(
             setChannelInfo({
                 channelId: null,
@@ -54,6 +60,7 @@ function Category({ id, title }) {
         );
     }
 
+    // insert data from database to channels array
     useEffect(() => {
         if (categoryId) {
             db.collection('servers').doc(serverId).collection('categories').doc(categoryId).collection('channels').orderBy('timestamp').onSnapshot((snapshot) =>
@@ -66,6 +73,7 @@ function Category({ id, title }) {
     }, [categoryId, serverId])
     return (
         <div className='category' onClick={() => {
+            // send info about choosen category
             if (id !== categoryId) {
                 dispatch(
                     setChannelInfo({
@@ -105,7 +113,8 @@ function Category({ id, title }) {
                 </div>
             </div>
             <div className='category_channels'>
-                {id === categoryId
+                {// render channels from array
+                id === categoryId
                     ?
                     channels.map(({ id, channel }) => (
                         <Channel key={id} id={id} title={channel.channelName} />

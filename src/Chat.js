@@ -23,20 +23,23 @@ function Chat() {
     const [messages, setMessages] = useState([]);
     const [messageText, setMessageText] = useState('');
     const [messagesEnd, setMessagesEnd] = useState();
-    const [messagesCounter, setMessagesCounter] = useState(messages.length);
     const [serverName] = useState('server');
 
-
+    // send message to database
     const sendMessage = () => {
-        console.log(channelId)
         if (channelId && messageText.length > 0) {
             let nick = ''
+
+            // set user nick
             if (user) nick = user.email.slice(0, user.email.indexOf('@'));
 
+            // check date format
             const dateEdit = (date) => {
                 if (date < 10) return `0${date}`
                 else return date
             }
+
+            // set date string
             let d = new Date();
             let day = d.getDate();
             let month = d.getMonth();
@@ -45,6 +48,7 @@ function Chat() {
             let minutes = d.getMinutes();
             let date = `${dateEdit(hours)}:${dateEdit(minutes)} \xa0 ${dateEdit(day)}/${dateEdit(month)}/${dateEdit(year)}`;
 
+            // add messsage to database
             db.collection('servers').doc(serverId).collection('categories').doc(categoryId).collection('channels').doc(channelId).collection('messages').add({
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                 message: messageText,
@@ -52,19 +56,14 @@ function Chat() {
                 date,
                 avatarColor: u.photoURL,
             })
+
+            // set input value
             setMessageText('');
         }
     }
 
-    const lol = () => {
-        messages.map(({ id, msg }) => (
-            <Message key={id} id={id} message={msg.message} nick={msg.nick} date={msg.date} avatarColor={msg.avatarColor} />
-
-        ));
-    }
-
+    // insert data from database to messages array
     useEffect(() => {
-        console.log(messages);
         if (channelId) {
             db.collection('servers').doc(serverId).collection('categories').doc(categoryId).collection('channels').doc(channelId).collection("messages").orderBy('timestamp').onSnapshot((snapshot) =>
                 setMessages(
@@ -94,21 +93,20 @@ function Chat() {
                                 <p className='chat_messages_bottom_channel_description'>Choose category and channel.</p>
                         }
                     </div>
-                    {channelId
+                    {// render messages from array
+                    channelId
                         ?
                         messages.map(({ id, msg }) => (
                             <Message key={id} id={id} message={msg.message} nick={msg.nick} date={msg.date} avatarColor={msg.avatarColor} />
-
                         ))
                         :
                         null
                     }
 
+                    <div ref={(el) => setMessagesEnd(el)}/>
 
-                    <div ref={(el) => setMessagesEnd(el)}>
-                    </div>
-
-                    {(messagesEnd)
+                    {// scroll to new added message
+                    (messagesEnd)
                         ?
                         messagesEnd.scrollIntoView({ behavior: 'smooth' })
                         :

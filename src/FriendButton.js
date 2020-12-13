@@ -5,9 +5,6 @@ import { BsX } from "react-icons/bs";
 
 
 function FriendButton({ image, nick }) {
-    const removeFriend = () => {
-
-    }
     return (
         <div className='friendButton'>
             <img src={image} alt='avatar' />

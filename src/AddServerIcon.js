@@ -6,6 +6,7 @@ import firebase from 'firebase';
 
 function AddServerIcon() {
 
+    // add server to database
     const addServer = () => {
         const serverName = prompt('Enter server name: ');
         if (serverName) {

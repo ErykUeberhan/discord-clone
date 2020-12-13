@@ -13,16 +13,21 @@ function Channel({ id, title }) {
     const channelId = useSelector(selectChannelId);
     const serverId = useSelector(selectServerId);
 
+    // remove channel from database
     const removeChannel = () => {
         const channel = db.collection('servers').doc(serverId).collection('categories').doc(categoryId).collection('channels').doc(channelId);
+
+        // remove data belonging to this channel
         channel.collection('messages').get().then((rel) => {
             rel.forEach((element) => {
                 element.ref.delete();
             })
         })
 
+        // delete channel
         channel.delete();
 
+        // set local info about removed data to null
         dispatch(
             setChannelInfo({
                 channelId: null,
@@ -32,6 +37,7 @@ function Channel({ id, title }) {
     }
     return (
         <div className='channel' onClick={() => {
+            // send info about choosen channel
             if (id !== channelId) {
                 dispatch(
                     setChannelInfo({

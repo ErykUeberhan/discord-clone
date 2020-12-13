@@ -15,10 +15,12 @@ function Menu() {
     const [servers, setServers] = useState([]);
     const history = useHistory();
 
+    // back to main page if all servers are deleted
     if (servers.length === 0) {
         history.push('/');
     }
 
+    // insert data from database to servers array
     useEffect(() => {
         db.collection('servers').orderBy('timestamp').onSnapshot((snapshot) =>
             setServers(snapshot.docs.map((doc) => ({
@@ -39,7 +41,8 @@ function Menu() {
 
                 <div className='separator' />
 
-                {servers.map(({ id, server }) => (
+                {// render servers from array
+                servers.map(({ id, server }) => (
                     <Link to='/channel' className='menu_link'>
                         <ServerIcon key={id} id={id} title={server.serverName} />
                     </Link>

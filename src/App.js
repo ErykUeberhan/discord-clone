@@ -18,44 +18,32 @@ import MobileChannelsList from './MobileChannelsList';
 
 function App() {
   const dispatch = useDispatch();
-
   const user = useSelector(selectUser);
   const mobileMenu = useSelector(selectMobileMenu);
 
+  // randomize user avatar color
   const color = (rand) => {
-    if (rand <= 0.16) {
-      return `rgb(255, ${Math.ceil(Math.random() * 255)}, 0)`;
-    }
-    else if (rand > 0.16 && rand <= 0.32) {
-      return `rgb(255, 0, ${Math.ceil(Math.random() * 255)})`;
-    }
-    else if (rand > 0.32 && rand <= 0.48) {
-      return `rgb(${Math.ceil(Math.random() * 255)}, 255, 0)`;
-    }
-    else if (rand > 0.48 && rand <= 0.64) {
-      return `rgb(0, 255, ${Math.ceil(Math.random() * 255)})`;
-    }
-    else if (rand > 0.64 && rand <= 0.8) {
-      return `rgb(${Math.ceil(Math.random() * 255)}, 0, 255)`;
-    }
-    else if (rand > 0.8 && rand <= 1) {
-      return `rgb(0, ${Math.ceil(Math.random() * 255)}, 255)`;
-    }
+    const randomColor = Math.ceil(Math.random() * 255);
+    if (rand <= 0.16) return `rgb(255, ${randomColor}, 0)`;
+    else if (rand > 0.16 && rand <= 0.32) return `rgb(255, 0, ${randomColor})`;
+    else if (rand > 0.32 && rand <= 0.48) return `rgb(${randomColor}, 255, 0)`;
+    else if (rand > 0.48 && rand <= 0.64) return `rgb(0, 255, ${randomColor})`;
+    else if (rand > 0.64 && rand <= 0.8) return `rgb(${randomColor}, 0, 255)`;
+    else return `rgb(0, ${randomColor}, 255)`;
   }
 
-  const u = firebase.auth().currentUser;
+  // add user avatar color to database
+  const userInfo = firebase.auth().currentUser;
   let avatarColor = color(Math.random());
-  if (user && !u.photoURL) {
-    u.updateProfile({
+  if (user && !userInfo.photoURL) {
+    userInfo.updateProfile({
       photoURL: avatarColor,
     })
-    console.log(u);
   }
 
 
-
+  // add user email to local storage
   useEffect(() => {
-
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         dispatch(login({

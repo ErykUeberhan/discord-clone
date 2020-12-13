@@ -13,7 +13,7 @@ function ServerIcon({ id, title }) {
     const removeServer = () => {
         const server = db.collection('servers');
 
-
+        // remove data belonging to this server
         server.doc(serverId).collection('categories').get().then((res) => {
             res.forEach((element) => {
                 element.ref.collection('channels').get().then((res) => {
@@ -32,8 +32,10 @@ function ServerIcon({ id, title }) {
             });
         });
 
+        // delete server
         server.doc(serverId).delete();
 
+        // set local info about removed data to null
         dispatch(
             setChannelInfo({
                 channelId: null,
@@ -54,6 +56,7 @@ function ServerIcon({ id, title }) {
     }
     return (
         <div className='serverIcon' onClick={() => {
+            // send info about choosen server
             if (id !== serverId) {
                 dispatch(
                     setChannelInfo({
