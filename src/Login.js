@@ -2,14 +2,11 @@ import React, { useState } from 'react';
 import './Login.css';
 import { useHistory } from "react-router-dom";
 import { auth } from './firebase';
-import { useSelector } from 'react-redux';
-import { selectUser } from './features/counter/userSlice';
 
 function Login() {
     const history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const user = useSelector(selectUser);
 
     // signin firebase function
     const signin = (event) => {

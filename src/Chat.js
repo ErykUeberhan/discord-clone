@@ -94,23 +94,23 @@ function Chat() {
                         }
                     </div>
                     {// render messages from array
-                    channelId
-                        ?
-                        messages.map(({ id, msg }) => (
-                            <Message key={id} id={id} message={msg.message} nick={msg.nick} date={msg.date} avatarColor={msg.avatarColor} />
-                        ))
-                        :
-                        null
+                        channelId
+                            ?
+                            messages.map(({ id, msg }) => (
+                                <Message key={id} id={id} message={msg.message} nick={msg.nick} date={msg.date} avatarColor={msg.avatarColor} />
+                            ))
+                            :
+                            null
                     }
 
-                    <div ref={(el) => setMessagesEnd(el)}/>
+                    <div ref={(el) => setMessagesEnd(el)} />
 
                     {// scroll to new added message
-                    (messagesEnd)
-                        ?
-                        messagesEnd.scrollIntoView({ behavior: 'smooth' })
-                        :
-                        null
+                        (messagesEnd)
+                            ?
+                            messagesEnd.scrollIntoView({ behavior: 'smooth' })
+                            :
+                            null
                     }
 
                 </div>
@@ -128,7 +128,7 @@ function Chat() {
                 <MdSend className='chat_sendTextField_send' onClick={sendMessage} />
                 <FaGift className='chat_sendTextField_icon' />
                 <RiFileGifFill className='chat_sendTextField_icon' />
-                <FaSmile className='chat_sendTextField_icon' onClick={() => console.log(u.photoURL)} />
+                <FaSmile className='chat_sendTextField_icon' />
 
             </div>
         </div>

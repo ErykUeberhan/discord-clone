@@ -28,14 +28,14 @@ function UserContainer() {
 
     return (
         <div className='userContainer'>
-            <div className='userContainer_left' onClick={() => console.log(u)}>
+            <div className='userContainer_left'>
                 <Avatar avatarColor={u.photoURL} />
                 <div>
                     <p style={{ color: 'white', fontWeight: '600' }}>{nick}</p>
                     <p>#5990</p>
                 </div>
             </div>
-            <div className='userContainer_right' onClick={() => console.log(user)}>
+            <div className='userContainer_right'>
                 {
                     mute
                         ?

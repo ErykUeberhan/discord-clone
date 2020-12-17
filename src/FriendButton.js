@@ -9,7 +9,7 @@ function FriendButton({ image, nick }) {
         <div className='friendButton'>
             <img src={image} alt='avatar' />
             {nick}
-            <div className='friendButton_xIconDiv' onClick={removeFriend}>
+            <div className='friendButton_xIconDiv'>
                 <BsX className='friendButton_xIconDiv_xIcon' />
             </div>
         </div>

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './Category.css'
 import { FiChevronDown, FiChevronRight } from 'react-icons/fi'
+import { FaHashtag } from "react-icons/fa";
+import { GoUnmute } from "react-icons/go";
 import Channel from './Channel'
 import db from './firebase'
 import { useDispatch, useSelector } from 'react-redux'
@@ -12,11 +14,12 @@ function Category({ id, title }) {
     const categoryId = useSelector(selectCategoryId)
     const serverId = useSelector(selectServerId)
     const [channels, setChannels] = useState([])
+    const [channelName, setChannelName] = useState('');
+    const [channelPrompt, setChannelPrompt] = useState(false);
     const dispatch = useDispatch();
 
     // add channel to database
     const addChannel = () => {
-        const channelName = prompt('Add channel:');
         if (channelName) {
             db.collection('servers').doc(serverId).collection('categories').doc(categoryId).collection('channels').add({
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
@@ -105,21 +108,55 @@ function Category({ id, title }) {
                     {id === categoryId
                         ?
                         <>
-                            <BsPlus className='category_header_menu_add' onClick={addChannel} />
+                            <BsPlus className='category_header_menu_add' onClick={() => setChannelPrompt(true)} />
                             <BsX className='category_header_menu_remove' onClick={removeCategory} />
                         </>
                         : null
                     }
                 </div>
+                {
+                    channelPrompt
+                        ?
+                        <div className='category_prompt' onClick={(e) => e.stopPropagation()}>
+                            <div className='category_prompt_field'>
+                                <p className='category_prompt_field_title'>Create Channel</p>
+                                <div className='category_prompt_field_choose'>
+                                    <p className='category_prompt_field_choose_title'>CHANNEL TYPE</p>
+                                    <label className='category_prompt_field_choose_textChannel'>
+                                        <input type='radio' name='channel' />
+                                        <span className='category_prompt_field_choose_textChannel_radiomark'></span>
+                                        <FaHashtag />
+                                        <p>Text Channel</p>
+                                    </label>
+                                    <label className='category_prompt_field_choose_voiceChannel'>
+                                        <input type='radio' name='channel' />
+                                        <span className='category_prompt_field_choose_voiceChannel_radiomark'></span>
+                                        <GoUnmute />
+                                        <p>Voice Channel</p>
+                                    </label>
+                                </div>
+                                <div className='category_prompt_field_insert'>
+                                    <p className='category_prompt_field_insert_title'>CHANNEL NAME</p>
+                                    <input className='category_prompt_field_insert_input' onChange={(e) => setChannelName(e.target.value)} />
+                                </div>
+                                <div className='category_prompt_field_buttons'>
+                                    <button className='category_prompt_field_buttons_cancel' onClick={() => setChannelPrompt(false)}>Cancel</button>
+                                    <button className='category_prompt_field_buttons_submit' onClick={() => { if (channelName.length > 0) addChannel(); setChannelPrompt(false) }}>Create</button>
+                                </div>
+                            </div>
+                        </div>
+                        :
+                        null
+                }
             </div>
             <div className='category_channels'>
                 {// render channels from array
-                id === categoryId
-                    ?
-                    channels.map(({ id, channel }) => (
-                        <Channel key={id} id={id} title={channel.channelName} />
-                    ))
-                    : null
+                    id === categoryId
+                        ?
+                        channels.map(({ id, channel }) => (
+                            <Channel key={id} id={id} title={channel.channelName} />
+                        ))
+                        : null
                 }
             </div>
         </div>

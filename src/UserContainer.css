@@ -6,16 +6,11 @@
     padding: 10px;
 }
 
-.userContainer_left {
-    display: flex;
-    flex-direction: row;
-}
-
 .userContainer_left > div {
     margin-right: 10px;
 }
 
-.userContainer_right {
+.userContainer_left, .userContainer_right {
     display: flex;
     flex-direction: row;
 }
@@ -60,22 +55,10 @@
     margin-left: 70px;
 }
 
-.userContainer_right_mute:hover ~ .userContainer_right_muteAlert {
-    display: flex;
-}
-
-.userContainer_right_unmute:hover ~ .userContainer_right_unmuteAlert {
-    display: flex;
-}
-
-.userContainer_right_deafen:hover ~ .userContainer_right_deafenAlert {
-    display: flex;
-}
-
-.userContainer_right_undeafen:hover ~ .userContainer_right_undeafenAlert {
-    display: flex;
-}
-
+.userContainer_right_mute:hover ~ .userContainer_right_muteAlert,
+.userContainer_right_unmute:hover ~ .userContainer_right_unmuteAlert,
+.userContainer_right_deafen:hover ~ .userContainer_right_deafenAlert,
+.userContainer_right_undeafen:hover ~ .userContainer_right_undeafenAlert,
 .userContainer_right_settings:hover ~ .userContainer_right_settingsAlert {
     display: flex;
 }
