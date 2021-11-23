@@ -11,9 +11,9 @@ import firebase from 'firebase'
 import { BsX, BsPlus } from "react-icons/bs";
 
 function Category({ id, title }) {
-    const categoryId = useSelector(selectCategoryId)
-    const serverId = useSelector(selectServerId)
-    const [channels, setChannels] = useState([])
+    const categoryId = useSelector(selectCategoryId);
+    const serverId = useSelector(selectServerId);
+    const [channels, setChannels] = useState([]);
     const [channelName, setChannelName] = useState('');
     const [channelPrompt, setChannelPrompt] = useState(false);
     const dispatch = useDispatch();
